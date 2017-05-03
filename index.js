@@ -19,7 +19,6 @@ var googleSearch = new GoogleSearch({
 app.set('view engine', 'hbs');
 
 const port = process.env.PORT || 80;
-const dbAddress = `mongodb://${process.env.DBUSER}:${process.env.DBPASSWORD}@ds129031.mlab.com:29031/fcc-image-search`;
 
 app.get('/', (req, res) => {
   getDB().then((db) => {
@@ -101,6 +100,9 @@ app.listen(port, () => {
 });
 
 function getDB() {
+
+  const dbAddress = `mongodb://${process.env.DBUSER}:${process.env.DBPASSWORD}@ds129031.mlab.com:29031/fcc-image-search`;
+
   let promise = new Promise((resolve, reject) => {
     MongoClient.connect(dbAddress, (err, db) => {
       if (err) {
