@@ -29,7 +29,6 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/imagesearch/:str', (req, res) => {
-  res.end("test");
   console.log(req.params);
   console.log(req.query);
 
@@ -40,7 +39,7 @@ app.get('/api/imagesearch/:str', (req, res) => {
     } else {
 
       const formattedSearch = {
-        'search_string' : req.params.str,
+        'search_string' : req.params.str || 'problem',
         'timestamp' : parseInt(moment().format('x'))
       };
 
@@ -53,6 +52,13 @@ app.get('/api/imagesearch/:str', (req, res) => {
 
 
   // get and display results
+  const result = {
+    'url' : 'test',
+    'snippest' : 'test',
+    'thumbnail' : 'test',
+    'context' : 'test'
+  };
+  res.send(result);
 });
 
 app.get('/api/latest/imagesearch/', (req, res) => {
